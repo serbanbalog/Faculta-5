@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.InsertButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // InsertButton
@@ -41,14 +42,26 @@
             this.InsertButton.UseVisualStyleBackColor = true;
             this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
             // 
-            // Form1
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(112, 12);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(94, 29);
+            this.refreshButton.TabIndex = 1;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 692);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.InsertButton);
-            this.Name = "Form1";
+            this.Name = "mainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);
 
         }
@@ -56,5 +69,6 @@
         #endregion
 
         private Button InsertButton;
+        private Button refreshButton;
     }
 }

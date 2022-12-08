@@ -91,18 +91,20 @@ namespace Faculta_5
                     Display.Text += x.ToString();
                     (sender as Button).Enabled = false;
                     max++;
-
                     break;
                 case 10:
-                        for(int i = 0; i < 3; i++)
-                            for(int j=0;j<4;j++)
-                                T[i, j].Enabled = true;
-                        Display.Text = "";
-                        max = 0;
+                    for(int i = 0; i < 3; i++)
+                        for(int j=0;j<4;j++)
+                            T[i, j].Enabled = true;
+                    Display.Text = "";
+                    max = 0;
                     break;
                 case 11:
+                        Engine.x = int.Parse(Display.Text);
+                        this.Close();
                     break;
             }
         }
+
     }
 }
