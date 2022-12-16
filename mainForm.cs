@@ -29,12 +29,17 @@ namespace Faculta_5
             listBox.Left = 12;
             listBox.Parent = this;
             listBox.Font = new Font("Arial", 20, FontStyle.Regular);
+            Engine.h1 = Engine.Load(@"D:\VS Projects\Faculta 5\Resources\Help\h1.txt");
+            Engine.h2 = Engine.Load(@"D:\VS Projects\Faculta 5\Resources\Help\h2.txt");
+            Engine.h3 = Engine.Load(@"D:\VS Projects\Faculta 5\Resources\Help\h3.txt");
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             Refresh();
         }
+        
+
 
         public void Refresh()
         {
@@ -246,6 +251,12 @@ namespace Faculta_5
         private void hintButton_Click(object sender, EventArgs e)
         {
             textBox1.Text = Hint().ToString();
+        }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            HelpForm myIF = new HelpForm();
+            myIF.ShowDialog();
         }
     }
 }

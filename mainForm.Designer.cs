@@ -33,6 +33,7 @@
             this.newGameButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.hintButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // InsertButton
@@ -82,11 +83,22 @@
             this.hintButton.UseVisualStyleBackColor = true;
             this.hintButton.Click += new System.EventHandler(this.hintButton_Click);
             // 
+            // helpButton
+            // 
+            this.helpButton.Location = new System.Drawing.Point(543, 10);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(94, 29);
+            this.helpButton.TabIndex = 5;
+            this.helpButton.Text = "Help";
+            this.helpButton.UseVisualStyleBackColor = true;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 692);
+            this.Controls.Add(this.helpButton);
             this.Controls.Add(this.hintButton);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.newGameButton);
@@ -108,5 +120,6 @@
         private Button newGameButton;
         private TextBox textBox1;
         private Button hintButton;
+        private Button helpButton;
     }
 }
