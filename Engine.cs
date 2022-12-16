@@ -10,5 +10,6 @@ namespace Faculta_5
     {
         public static int nc;
         public static int nu;
+        public static List<T> History = new List<T>();
     }
 }

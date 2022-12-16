@@ -20,7 +20,7 @@ namespace Faculta_5
 
         }
 
-        private void mainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             listBox = new ListBox();
             listBox.Width = 300;
@@ -31,23 +31,46 @@ namespace Faculta_5
             listBox.Font = new Font("Arial", 20, FontStyle.Regular);
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
-            refresh();
+            Refresh();
         }
 
-        public void refresh()
+        public void Refresh()
         {
-            listBox.Items.Add(Engine.nu + " " + Engine.nc);
-            listBox.Items.Add(Engine.nu + " " + numberTest());
+            int tmp = NumberTest();
+            listBox.Items.Add(Engine.nu + " " + tmp);
+            Engine.History.Add(new T(Engine.nu, tmp));
             textBox1.Text = Engine.nc.ToString();
         }
 
-        public void newGame()
+        public int Hint()
         {
-            Engine.nc = generateNumber4();
+            int pn;
+            bool ok;
+            do
+            {
+                pn = GenerateNumber4();
+                ok = true;
+
+                foreach (T t in Engine.History)
+                {
+                    if (NumberTest(pn, t.nr) != t.pow)
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+            } while (!ok);
+            return pn;
         }
-        public int generateNumber1()
+
+        public void NewGame()
+        {
+            Engine.nc = GenerateNumber4();
+            Engine.History.Clear();
+        }
+        public int GenerateNumber1()
         {
             bool ok;
             int x;
@@ -64,7 +87,7 @@ namespace Faculta_5
             } while (!ok);
             return x;
         }
-        public int generateNumber2()
+        public int GenerateNumber2()
         {
             int x;
             int c1 = rnd.Next(1,10);
@@ -95,7 +118,7 @@ namespace Faculta_5
 
         }
 
-        public int generateNumber3()
+        public int GenerateNumber3()
         {
             int[] v = new int[10];
             int x;
@@ -135,7 +158,7 @@ namespace Faculta_5
             return x;
         }
 
-        public int generateNumber4()
+        public int GenerateNumber4()
         {
             List<int> intregi = new List<int>();
             for(int i =0; i < 10; i++)
@@ -157,7 +180,36 @@ namespace Faculta_5
             return x;
         }
 
-        private int numberTest()
+        private int NumberTest(int x, int y)
+        {
+            int nc_copy = x;
+            int[] nComputer = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                nComputer[i] = nc_copy % 10;
+                nc_copy /= 10;
+            }
+            int nu_copy = y;
+            int[] nUser = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                nUser[i] = nu_copy % 10;
+                nu_copy /= 10;
+            }
+            int p = 0, c = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (nUser[i] == nComputer[j] && i == j)
+                        c++;
+                    if (nUser[i] == nComputer[j] && j != i)
+                        p++;
+                }
+            }
+            return 100 + (c * 10) + p;
+        }
+        private int NumberTest()
         {
             int nc_copy = Engine.nc;
             int[] nComputer = new int[4];
@@ -186,9 +238,14 @@ namespace Faculta_5
             }
             return 100 + (c * 10) + p ;
         }
-        private void newGameButton_Click(object sender, EventArgs e)
+        private void NewGameButton_Click(object sender, EventArgs e)
         {
-            newGame();
+            NewGame();
+        }
+
+        private void hintButton_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = Hint().ToString();
         }
     }
 }
