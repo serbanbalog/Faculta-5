@@ -8,7 +8,7 @@ namespace Faculta_5
 {
     public static class Engine
     {
-        public static int x;
-
+        public static int nc;
+        public static int nu;
     }
 }

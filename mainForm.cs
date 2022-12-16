@@ -23,7 +23,7 @@ namespace Faculta_5
         private void mainForm_Load(object sender, EventArgs e)
         {
             listBox = new ListBox();
-            listBox.Width = 90;
+            listBox.Width = 300;
             listBox.Height = 500;
             listBox.Top = 50;
             listBox.Left = 12;
@@ -38,13 +38,14 @@ namespace Faculta_5
 
         public void refresh()
         {
-            listBox.Items.Add(Engine.x.ToString());
+            listBox.Items.Add(Engine.nu + " " + Engine.nc);
+            listBox.Items.Add(Engine.nu + " " + numberTest());
+            textBox1.Text = Engine.nc.ToString();
         }
 
         public void newGame()
         {
-            ncs = generateNumber4();
-            textBox1.Text = ncs.ToString();
+            Engine.nc = generateNumber4();
         }
         public int generateNumber1()
         {
@@ -154,6 +155,36 @@ namespace Faculta_5
             x += intregi[t];
 
             return x;
+        }
+
+        private int numberTest()
+        {
+            int nc_copy = Engine.nc;
+            int[] nComputer = new int[4];
+            for(int i =0;i<4;i++)
+            {
+                nComputer[i] = nc_copy % 10;
+                nc_copy /= 10;
+            }
+            int nu_copy = Engine.nu;
+            int[] nUser = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                nUser[i] = nu_copy % 10;
+                nu_copy /= 10;
+            }
+            int p = 0, c = 0;
+            for(int i = 0;i<4;i++)
+            {
+                for(int j=0; j<4;j++)
+                {
+                    if (nUser[i] == nComputer[j] && i == j)
+                        c++;
+                    if (nUser[i] == nComputer[j] && j != i)
+                        p++;
+                }
+            }
+            return 100 + (c * 10) + p ;
         }
         private void newGameButton_Click(object sender, EventArgs e)
         {
